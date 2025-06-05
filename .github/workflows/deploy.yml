@@ -5,10 +5,11 @@ on: push
 jobs:
     firts_job:
         runs-on: ubuntu-Latest
-
+        env:
+            NAME: "CodigoFacilito"
         steps:
             - name: Hola
-              run: echo "Hola Mundo"
+              run: echo "Hola Mundo ${{ env.NAME }}"
 
     second_job:
         if: ${{ github.ref == 'refs/heads/master' }}
