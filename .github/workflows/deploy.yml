@@ -11,9 +11,10 @@ jobs:
               run: echo "Hola Mundo"
 
     second_job:
+        if: ${{ github.ref == 'refs/heads/master' }}
         needs: firts_job
         runs-on: ubuntu-Latest
 
         steps:
-            - name: Hola
-              run: echo "Hola Mundo"
+            - name: Hola Mundo segundo
+              run: echo "Hola Mundo ${{ github.ref }}"
