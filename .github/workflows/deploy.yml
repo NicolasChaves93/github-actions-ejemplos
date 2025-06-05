@@ -3,19 +3,21 @@ name: Deploy to server
 on: push
 
 jobs:
-    firts_job:
-        runs-on: ubuntu-Latest
-        env:
-            NAME: "CodigoFacilito"
-        steps:
-            - name: Hola
-              run: echo "Hola Mundo ${{ env.NAME }}"
+  firts_job:
+    runs-on: ubuntu-Latest
+    
+    steps:
+        - name: Working dir
+          id: step_1
+          run: echo "mi_variable=Hola mundo" >> $GITHUB_OUTPUT
+        
+        - name: Obtener mensaje
+          run: echo "${{ steps.step_1.outputs.mi_variable }}"
 
-    second_job:
-        if: ${{ github.ref == 'refs/heads/master' }}
-        needs: firts_job
-        runs-on: ubuntu-Latest
+  second_job:
+    needs: firts_job
+    runs-on: ubuntu-Latest
 
-        steps:
-            - name: Hola Mundo segundo
-              run: echo "Hola Mundo ${{ github.ref }}"
+    steps:
+      - name: Hola Mundo segundo
+        run: echo "Hola Mundo ${{ github.ref }}"
